@@ -108,4 +108,4 @@ class AESCipher(object):
     def read(file_name):
         fp = open(file_name, 'rb')
         values = fp.read().split(b"\xff")
-        return AESCipher(values[0], values[1])
+        return AESCipher(key=values[0], iv=values[1])
