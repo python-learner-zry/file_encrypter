@@ -1,7 +1,7 @@
 from Crypto.Cipher import AES
 import pbkdf2
 import os
-from tqdm import trange
+from tqdm.tk import trange
 # // class __PBKDF2Cipher(object):
 # //    def __init__(self, salt):
 # //        self.salt = salt
@@ -97,15 +97,3 @@ class AESCipher(object):
         content = self.decrypt(fp.read())
         fp_dec.write(content)
         fp_dec.close()
-
-    def export(self, file_name):
-        fp = open(file_name, 'wb')
-        fp.write(self.key)
-        fp.write(b'\xff')
-        fp.write(self.iv)
-    
-    @staticmethod
-    def read(file_name):
-        fp = open(file_name, 'rb')
-        values = fp.read().split(b"\xff")
-        return AESCipher(key=values[0], iv=values[1])
